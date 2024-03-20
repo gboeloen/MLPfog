@@ -8,7 +8,7 @@
 [[ ${plot}   == '' ]] && plot=0
 
 # read flags in case of interactive execution
-while getopts d:t:p:v: option ; do
+while getopts e:v:p: option ; do
    case $option in
    e) exp=$OPTARG ;;
    v) verify=$OPTARG ;;
