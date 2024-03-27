@@ -30,11 +30,20 @@ checkargs () {
     echo
     echo "One of the arguments 'verify', 'plot' are not correct!"
     echo "You can run this script e.g. as:"
-    echo "  driver.sh -e your_exp_name (default: exp) -v 0/1 -p 0/1"
+    echo "  driver.sh -e exp+your_added_id (default: exp) -v 0/1 -p 0/1"
     echo
     exit
   fi
-  if [[ ${exp} = 'exp' ]] ; then
+  begin=`echo ${exp} |cut -c 1-3`
+  if [[ ${begin} != 'exp' ]] ; then
+    echo
+    echo "Experiment name should start with the characters 'exp'!"
+    echo "You can run this script e.g. as:"
+    echo "  driver.sh -e exp+your_added_id (default: exp) -v 0/1 -p 0/1"
+    echo
+    exit
+  fi
+  if [[ ${exp} == 'exp' ]] ; then
     echo
     echo "Argument '-e your_exp_name' is not set"
     echo " --> default exp name 'exp' used."

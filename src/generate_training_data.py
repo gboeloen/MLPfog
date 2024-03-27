@@ -8,12 +8,19 @@ days=np.arange(1,ndays+1,1)
 
 # generate training data
 print('... generate training data')
-rng = np.random.default_rng(22)
+# It is important to redefine the random generator (rng)
+# with a specific fixed seed (does not matter which value)
+# for all variables because only this way can be achiaved
+# that by variing the data size (ndays) between experiments
+# produces the same training set (their common set).
 # T with normal distribution
+rng = np.random.default_rng(2)
 T = rng.normal(6., 1., days.size)
 # Td with normal distribution
+rng = np.random.default_rng(22)
 Td = rng.normal(5.9, 1.5, days.size)
 # wind speed with Weibull distribution
+rng = np.random.default_rng(222)
 wind = rng.weibull(1., days.size)
 
 # maximize Td in T
